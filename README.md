@@ -14,6 +14,14 @@ A 2D platformer built with **Python (Flask)** on the backend and
 - Pause menu (resume / restart level / save / quit)
 - **Save & Continue**, stored locally in the browser so it works without a server
 - **Leaderboard** — submit your final score and see the top 10 scores stored on the device
+  
+---
+
+## Demo:
+
+![Pixel Quest demo](./docs/assets/Demo.gif)
+
+---
 
 ## Project structure
 
