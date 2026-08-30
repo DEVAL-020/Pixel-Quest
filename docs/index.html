@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixel-Quest</title>
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div id="app">
+    <section id="screen-menu" class="screen active">
+      <div class="crt-frame">
+        <h1 class="title">PIXEL<span>QUEST</span></h1>
+        <p class="subtitle">a hand-built 2D platformer</p>
+
+        <div class="menu-panel">
+          <label class="field-label" for="player-name">PLAYER NAME</label>
+          <input id="player-name" class="pixel-input" maxlength="12" placeholder="HERO" autocomplete="off">
+
+          <div class="menu-buttons">
+            <button id="btn-new-game" class="btn btn-primary">New Game</button>
+            <button id="btn-continue" class="btn" disabled>Continue</button>
+            <button id="btn-leaderboard" class="btn">Leaderboard</button>
+            <button id="btn-howto" class="btn">How to Play</button>
+          </div>
+        </div>
+        <p class="hint">move <kbd>&larr;</kbd><kbd>&rarr;</kbd> &nbsp; jump <kbd>SPACE</kbd> &nbsp; pause <kbd>ESC</kbd>
+        </p>
+      </div>
+    </section>
+
+    <section id="screen-howto" class="screen">
+      <div class="crt-frame narrow">
+        <h2 class="panel-title">How To Play</h2>
+        <ul class="howto-list">
+          <li><kbd>&larr;</kbd> <kbd>&rarr;</kbd> or <kbd>A</kbd> <kbd>D</kbd> — move</li>
+          <li><kbd>SPACE</kbd> / <kbd>&uarr;</kbd> / <kbd>W</kbd> — jump (tap platform edges for extra height)</li>
+          <li><kbd>ESC</kbd> / <kbd>P</kbd> — pause</li>
+          <li>Collect <span class="tag coin">coins</span> for score. Avoid or stomp <span
+              class="tag enemy">enemies</span> from above.</li>
+          <li>Touching an enemy from the side costs a <span class="tag heart">heart</span>. Lose all hearts and you
+            restart the level.</li>
+          <li>Reach the glowing <span class="tag flag">flag</span> to clear the level.</li>
+        </ul>
+        <button class="btn btn-primary" data-nav="screen-menu">Back</button>
+      </div>
+    </section>
+
+    <section id="screen-leaderboard" class="screen">
+      <div class="crt-frame narrow">
+        <h2 class="panel-title">Leaderboard</h2>
+        <div id="leaderboard-list" class="leaderboard-list">
+          <p class="muted">Loading scores…</p>
+        </div>
+        <button class="btn btn-primary" data-nav="screen-menu">Back</button>
+      </div>
+    </section>
+
+    <section id="screen-game" class="screen">
+      <div class="hud">
+        <div class="hud-group">
+          <span class="hud-label">LEVEL</span>
+          <span id="hud-level" class="hud-value">1</span>
+        </div>
+        <div class="hud-group">
+          <span class="hud-label">SCORE</span>
+          <span id="hud-score" class="hud-value">0</span>
+        </div>
+        <div class="hud-group" id="hud-hearts"></div>
+        <button id="btn-pause" class="btn btn-small" aria-label="Pause">II</button>
+      </div>
+
+      <div class="canvas-wrap">
+        <canvas id="game-canvas" width="960" height="540"></canvas>
+
+        <div id="overlay-pause" class="overlay hidden">
+          <div class="overlay-panel">
+            <h2 class="panel-title">Paused</h2>
+            <div class="menu-buttons">
+              <button id="btn-resume" class="btn btn-primary">Resume</button>
+              <button id="btn-restart-level" class="btn">Restart Level</button>
+              <button id="btn-save-progress" class="btn">Save Progress</button>
+              <button id="btn-quit" class="btn">Quit to Menu</button>
+            </div>
+            <p id="save-status" class="save-status"></p>
+          </div>
+        </div>
+
+        <div id="overlay-levelcomplete" class="overlay hidden">
+          <div class="overlay-panel">
+            <h2 class="panel-title">Level Clear!</h2>
+            <p id="level-complete-score" class="muted"></p>
+            <div class="menu-buttons">
+              <button id="btn-next-level" class="btn btn-primary">Next Level</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="overlay-gameover" class="overlay hidden">
+          <div class="overlay-panel">
+            <h2 class="panel-title">Game Over</h2>
+            <p id="gameover-score" class="muted"></p>
+            <div class="menu-buttons">
+              <button id="btn-retry" class="btn btn-primary">Retry Level</button>
+              <button id="btn-gameover-menu" class="btn">Quit to Menu</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="overlay-victory" class="overlay hidden">
+          <div class="overlay-panel">
+            <h2 class="panel-title">You Win!</h2>
+            <p class="muted">All levels cleared.</p>
+            <p id="victory-score" class="muted"></p>
+            <div class="menu-buttons">
+              <button id="btn-submit-score" class="btn btn-primary">Submit Score</button>
+              <button id="btn-victory-menu" class="btn">Quit to Menu</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="site-footer">
+    <span>&copy; <span id="copyright-year"></span> Pixel Quest. All rights reserved.</span>
+    <span>Made with ❤️ by Deval Patel | <a style="color: #00ffff" href="https://github.com/DEVAL-020"
+        target="_blank">GitHub: DEVAL-020</a> </span>
+  </footer>
+
+  <script src="game.js"></script>
+</body>
+
+</html>
