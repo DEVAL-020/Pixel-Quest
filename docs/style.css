@@ -50,7 +50,6 @@ body {
   mix-blend-mode: multiply;
   z-index: 50;
 }
-
 .site-footer {
   position: fixed;
   right: 0;
