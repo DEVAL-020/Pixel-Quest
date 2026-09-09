@@ -19,7 +19,7 @@ A 2D platformer built with **Python (Flask)** on the backend and
 
 ## Demo:
 
-(./docs/assets/Demo.gif)
+![Demo](./docs/assets/Demo.gif)
 
 ---
 
