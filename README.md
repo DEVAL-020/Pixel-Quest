@@ -19,7 +19,7 @@ A 2D platformer built with **Python (Flask)** on the backend and
 
 ## Demo:
 
-![Pixel Quest demo](./docs/assets/Demo.gif)
+(./docs/assets/Demo.gif)
 
 ---
 
